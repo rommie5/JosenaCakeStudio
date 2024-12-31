@@ -134,31 +134,31 @@
               <h3>Drop a Feedback</h3>
               <p>You can drop a message or feeedback here.</p>
               <div class="row gy-3">
-
                 <div class="col-md-12">
-                  <input type="text" name="name" class="form-control" placeholder="Name" required="">
+                  <input type="text" id="name" name="name" class="form-control" placeholder="Name" required="">
                 </div>
-
-                <div class="col-md-12 ">
-                  <input type="email" class="form-control" name="email" placeholder="Email" required="">
-                </div>
-
+              
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="phone" placeholder="Phone" required="">
+                  <input type="email" id="email" class="form-control" name="email" placeholder="Email" required="">
                 </div>
-
+              
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                  <input type="text" id="phone" class="form-control" name="phone" placeholder="Phone" required="">
                 </div>
-
+              
+                <div class="col-md-12">
+                  <textarea id="message" class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                </div>
+              
                 <div class="col-md-12 text-center">
                   <div class="loading">Loading</div>
                   <div class="error-message"></div>
                   <div class="sent-message">Your quote request has been sent successfully. Thank you!</div>
-
-                  <button type="submit">Send</button>
+              
+                  <button type="submit" onclick="sendToWhatsApp(event)">Send</button>
                 </div>
-
+              </div>
+              
               </div>
             </form>
           </div><!-- End Quote Form -->
@@ -557,6 +557,33 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    function sendToWhatsApp(event) {
+      event.preventDefault(); // Prevent the form from submitting the traditional way
+  
+      // Get form data
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const message = document.getElementById('message').value;
+  
+      // Construct WhatsApp message with the form data
+      const whatsappMessage = `*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Message:* ${message}`;
+  
+      // Encode the message for URL
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+  
+      // Replace with your WhatsApp phone number (including country code, no "+" or spaces)
+      const phoneNumber = '256772370148'; // Replace this with your actual number
+  
+      // Construct WhatsApp link
+      const whatsappLink = `https://wa.me/${256772370148}?text=${encodedMessage}`;
+  
+      // Redirect to WhatsApp
+      window.open(whatsappLink, '_blank');
+    }
+  </script>
 
 </body>
 
