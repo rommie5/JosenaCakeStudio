@@ -510,6 +510,41 @@ h6 {
   font-size: 13px;
 }
 
+
+
+.contact-buttons {
+  position: fixed;
+  bottom: 20px; /* Distance from the bottom of the page */
+  right: 20px; /* Distance from the right side */
+  z-index: 9999; /* Ensure the buttons are always on top */
+}
+
+.call-us-btn, .whatsapp-btn {
+  display: block;
+  margin-bottom: 10px; /* Space between buttons */
+  padding: 15px 20px;
+  font-size: 16px;
+  border-radius: 50px; /* Rounded corners */
+  text-align: center;
+  width: 150px; /* Button width */
+}
+
+.call-us-btn {
+  background-color: #007bff; /* Blue color for Call Us */
+  color: white;
+  text-decoration: none;
+}
+
+.whatsapp-btn {
+  background-color: #25D366; /* WhatsApp green */
+  color: white;
+  text-decoration: none;
+}
+
+.call-us-btn:hover, .whatsapp-btn:hover {
+  opacity: 0.8; /* Slight transparency on hover */
+}
+
 /*--------------------------------------------------------------
 # Preloader
 --------------------------------------------------------------*/
