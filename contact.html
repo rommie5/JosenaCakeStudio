@@ -43,10 +43,9 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="projects.html">Projects</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
           <li><a href="blog.html">Blog</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="contact.html"class="active">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -108,42 +107,54 @@
         <div class="row gy-4 mt-1">
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus"
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d302113.6940735005!2d31.7348!3d-0.3586!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177db798acbfe0f7%3A0x70fdb9a5b918f709!2sLwanyi%2C%20Masaka%2C%20Uganda!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus"
               frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div><!-- End Google Maps -->
+        </div>
+        
 
-          <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up"
-              data-aos-delay="400">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
-                </div>
-
-                <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                </div>
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                </div>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
-                </div>
-
+        <div class="col-lg-6">
+          <form id="contact-form" class="php-email-form" data-aos="fade-up" data-aos-delay="400" onsubmit="sendToWhatsApp(event)">
+            <div class="row gy-4">
+        
+              <div class="col-md-6">
+                <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required="">
               </div>
-            </form>
+        
+              <div class="col-md-6">
+                <input type="email" id="email" class="form-control" name="email" placeholder="Your Email" required="">
+              </div>
+        
+              <div class="col-md-12">
+                <input type="text" id="subject" class="form-control" name="subject" placeholder="Subject" required="">
+              </div>
+        
+              <div class="col-md-12">
+                <textarea id="message" class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+              </div>
+        
+              <div class="col-md-12 text-center">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+        
+                <button type="submit">Send Message</button>
+              </div>
+        
+            </div>
+          </form>
+        </div>
+            
+            
+            
+
+            <div class="whatsapp-button">
+              <a href="https://wa.me/2567772370148" target="_blank" class="btn btn-success" style="display: flex; align-items: center;">
+                <i class="bi bi-whatsapp" style="font-size: 1.5rem; color: white;"></i>
+                <span style="margin-left: 10px; color: white;">Chat with us on WhatsApp</span>
+              </a>
+            </div>
           </div><!-- End Contact Form -->
 
         </div>
@@ -235,7 +246,32 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-
+  <script>
+    function sendToWhatsApp(event) {
+      event.preventDefault(); // Prevent the form from submitting the traditional way
+  
+      // Get form data
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+  
+      // Construct WhatsApp message with the form data
+      const whatsappMessage = `*Name:* ${name}\n*Email:* ${email}\n*Subject:* ${subject}\n*Message:* ${message}`;
+  
+      // Encode the message for URL
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+  
+      // Replace with your WhatsApp phone number (including country code, no "+" or spaces)
+      const phoneNumber = '256772370148'; // Replace this with your actual number
+  
+      // Construct WhatsApp link
+      const whatsappLink = `https://wa.me/${256772370148}?text=${encodedMessage}`;
+  
+      // Redirect to WhatsApp
+      window.open(whatsappLink, '_blank');
+    }
+  </script>
 </body>
 
 </html>
